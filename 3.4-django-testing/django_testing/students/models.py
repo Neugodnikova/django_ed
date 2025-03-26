@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Student(models.Model):
@@ -11,10 +12,9 @@ class Student(models.Model):
 
 
 class Course(models.Model):
-
     name = models.TextField()
+    students = models.ManyToManyField(Student, blank=True)
 
-    students = models.ManyToManyField(
-        Student,
-        blank=True,
-    )
+    def clean(self):
+        if self.students.count() > settings.MAX_STUDENTS_PER_COURSE:
+            raise ValidationError(f"Maximum number of students per course is {settings.MAX_STUDENTS_PER_COURSE}")

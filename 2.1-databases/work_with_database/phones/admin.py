@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Phone  # Импортируем модель
 
-# Register your models here.
+# Регистрируем модель
+admin.site.register(Phone)

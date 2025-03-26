@@ -51,11 +51,14 @@ MIDDLEWARE = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_import_phones',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-        'USER': 'postgres',
-        'PASSWORD': 'ваш пароль',
+        'NAME': 'neondb',
+        'USER': 'neondb_owner',
+        'PASSWORD': 'npg_e3mkujyZ7iEw',
+        'HOST': 'ep-empty-frog-a5ir24b7-pooler.us-east-2.aws.neon.tech',
+        'PORT': '5432',  # Оставляем стандартный порт для PostgreSQL
+        'OPTIONS': {
+            'sslmode': 'require',  # Обязательно для подключения к Neon
+        },
     }
 }
 
