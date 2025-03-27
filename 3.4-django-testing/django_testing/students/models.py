@@ -1,9 +1,10 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.conf import settings
 
 
 class Student(models.Model):
-
+    id = models.BigAutoField(primary_key=True)  # Это будет новый тип для первичного ключа
     name = models.TextField()
 
     birth_date = models.DateField(

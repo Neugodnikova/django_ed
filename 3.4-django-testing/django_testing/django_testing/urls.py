@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from students.views import CoursesViewSet
+from students.views import CoursesViewSet, StudentListView, StudentDetailView
 
 router = DefaultRouter()
 router.register("courses", CoursesViewSet, basename="courses")
+router.register("students", StudentListView, basename="students")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include(router.urls)),
+    path("api/v1/students/", StudentListView.as_view(), name="students-list"),  # Добавьте это
 ]
