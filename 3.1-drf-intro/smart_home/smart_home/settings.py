@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,9 +81,14 @@ WSGI_APPLICATION = 'smart_home.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_smart_home',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': 'neondb',
+        'USER': 'neondb_owner',
+        'PASSWORD': 'npg_e3mkujyZ7iEw',
+        'HOST': 'ep-empty-frog-a5ir24b7-pooler.us-east-2.aws.neon.tech',
+        'PORT': '5432',  # Оставляем стандартный порт для PostgreSQL
+        'OPTIONS': {
+            'sslmode': 'require',  # Обязательно для подключения к Neon
+        },
     }
 }
 
@@ -129,3 +135,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
